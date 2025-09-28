@@ -68,6 +68,114 @@
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -194,6 +302,26 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Enhanced focus states for accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .project-card, .achievement-card, .timeline-content {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gradient text effect for headings */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Navbar Styles */
 .navbar {
   width: 100%;
@@ -204,6 +332,8 @@ html {
   top: 0;
   left: 0;
   z-index: 1000;
+  animation: slideInFromTop 0.8s ease-out;
+  backdrop-filter: blur(10px);
 }
 
 .nav-content {
@@ -309,12 +439,33 @@ html {
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.nav-links li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .nav-links li a:hover {
   color: var(--primary-color);
+  background-color: rgba(100, 108, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-links li a:hover::before {
+  width: 80%;
 }
 
 @media (max-width: 768px) {
@@ -390,6 +541,13 @@ html {
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 4px 6px var(--shadow-color);
+  animation: float 6s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-hover);
 }
 
 .hero-text {
@@ -400,6 +558,11 @@ html {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: var(--text-color);
+  animation: fadeInLeft 1s ease-out 0.5s both;
+}
+
+.hero-text p {
+  animation: fadeInLeft 1s ease-out 0.8s both;
 }
 
 .hero-text p {
@@ -439,6 +602,7 @@ html {
   text-align: center;
   position: relative;
   font-weight: 700;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .section-title::after {
@@ -447,10 +611,20 @@ html {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 0;
   height: 4px;
   background-color: var(--primary-color);
   border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
 }
 
 .projects-grid {
@@ -465,22 +639,36 @@ html {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 20px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.3s; }
+.project-card:nth-child(3) { animation-delay: 0.5s; }
+
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 30px var(--shadow-hover);
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 12px 40px var(--shadow-hover);
 }
 
 .project-card h3 {
   color: var(--primary-color);
   font-size: 1.5em;
   margin: 0;
+  transition: all 0.3s ease;
 }
+
+.project-card:hover h3 {
+  transform: translateX(5px);
+}
+
+
 
 .project-description {
   color: var(--text-color);
@@ -503,6 +691,14 @@ html {
   font-size: 0.9em;
   font-weight: 500;
   border: 1px solid rgba(100, 108, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-tag:hover {
+  animation: pulse 0.6s ease-in-out;
+  background-color: rgba(100, 108, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 [data-theme="dark"] .tech-tag {
@@ -524,6 +720,23 @@ html {
   flex: 1;
   text-align: center;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-link:hover::before {
+  left: 100%;
 }
 
 .project-link.github {
@@ -714,8 +927,22 @@ html {
   width: 80%;
   max-width: 600px;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInTimeline 0.8s ease-out forwards;
 }
+
+@keyframes slideInTimeline {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-item:nth-child(1) .timeline-content { animation-delay: 0.2s; }
+.timeline-item:nth-child(2) .timeline-content { animation-delay: 0.4s; }
+.timeline-item:nth-child(3) .timeline-content { animation-delay: 0.6s; }
 
 .timeline-content:hover {
   transform: translateY(-5px);
@@ -789,9 +1016,16 @@ html {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
   position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
 }
+
+.achievement-card:nth-child(1) { animation-delay: 0.1s; }
+.achievement-card:nth-child(2) { animation-delay: 0.3s; }
+.achievement-card:nth-child(3) { animation-delay: 0.5s; }
 
 .achievement-card::before {
   content: '';
