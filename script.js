@@ -475,8 +475,105 @@ function initParticleSystem() {
     animate();
 }
 
-// Initialize all animations when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Front Page Functionality
+function initFrontPage() {
+    const frontPageOverlay = document.getElementById('frontPageOverlay');
+    const particlesContainer = document.querySelector('.particles-container');
+    let hasEntered = false; // Prevent multiple triggers
+    
+    // Create floating particles
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        particlesContainer.appendChild(particle);
+        
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.remove();
+            }
+        }, 6000);
+    }
+    
+    // Generate particles continuously
+    const particleInterval = setInterval(() => {
+        if (frontPageOverlay && !frontPageOverlay.classList.contains('hidden')) {
+            createParticle();
+        } else {
+            clearInterval(particleInterval);
+        }
+    }, 200);
+    
+    // Handle click/touch to enter portfolio
+    function enterPortfolio(e) {
+        // Prevent multiple triggers
+        if (hasEntered) return;
+        hasEntered = true;
+        
+        // Add visual feedback
+        frontPageOverlay.style.transform = 'scale(0.98)';
+        
+        setTimeout(() => {
+            frontPageOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Clear particles
+            clearInterval(particleInterval);
+            
+            // Initialize main portfolio animations after front page is hidden
+            setTimeout(() => {
+                initMainPortfolio();
+            }, 800);
+        }, 100);
+    }
+    
+    // Add click event listeners (works for both mouse and touch)
+    frontPageOverlay.addEventListener('click', enterPortfolio);
+    frontPageOverlay.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent double-tap zoom on mobile
+        enterPortfolio(e);
+    });
+    
+    // Add keyboard support (Enter or Space) - only when front page is visible
+    const keydownHandler = (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !frontPageOverlay.classList.contains('hidden')) {
+            e.preventDefault();
+            enterPortfolio(e);
+        }
+    };
+    
+    document.addEventListener('keydown', keydownHandler);
+    
+    // Clean up event listener when front page is hidden
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class' && frontPageOverlay.classList.contains('hidden')) {
+                document.removeEventListener('keydown', keydownHandler);
+                observer.disconnect();
+            }
+        });
+    });
+    
+    observer.observe(frontPageOverlay, { attributes: true });
+    
+    // Prevent scrolling on front page
+    document.body.style.overflow = 'hidden';
+    
+    // Prevent context menu on right click (mobile long press)
+    frontPageOverlay.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+    
+    // Add accessibility attributes
+    frontPageOverlay.setAttribute('role', 'button');
+    frontPageOverlay.setAttribute('aria-label', 'Click to enter portfolio');
+    frontPageOverlay.setAttribute('tabindex', '0');
+}
+
+// Main Portfolio Initialization
+function initMainPortfolio() {
     console.log('🚀 AI-Enhanced Portfolio Loaded Successfully!');
 
     // Initialize all animation functions
@@ -500,5 +597,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = heroTitle.textContent;
             enhancedTypeWriter(heroTitle, originalText, 100);
         }
-    }, 1500);
+    }, 500);
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if user has visited before (optional - you can remove this if you want front page every time)
+    const hasVisited = localStorage.getItem('portfolioVisited');
+    
+    if (!hasVisited) {
+        // First time visitor - show front page
+        initFrontPage();
+        localStorage.setItem('portfolioVisited', 'true');
+    } else {
+        // Returning visitor - go straight to portfolio (optional)
+        const frontPageOverlay = document.getElementById('frontPageOverlay');
+        frontPageOverlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        initMainPortfolio();
+    }
+    
+    // If you want to always show front page, replace above with just:
+    // initFrontPage();
 });
