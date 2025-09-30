@@ -127,16 +127,21 @@ html, body {
 .main-content-front {
   text-align: center;
   z-index: 2;
-  max-width: 900px;
-  padding: 3rem 2rem;
+  max-width: 700px;
+  padding: 2.5rem 2rem;
   width: 100%;
-  max-width: min(900px, 85vw);
+  max-width: min(700px, 90vw);
   box-sizing: border-box;
   background: rgba(10, 10, 15, 0.3);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   border: 1px solid rgba(0, 212, 255, 0.2);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 /* Name Styling */
@@ -150,24 +155,20 @@ html, body {
 }
 
 .main-name {
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
   background: linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #4ecdc4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
-  letter-spacing: clamp(0.05em, 0.8vw, 0.15em);
-  margin: 0;
+  letter-spacing: clamp(0.03em, 0.5vw, 0.1em);
+  margin: 0 0 2rem 0;
   animation: nameGlow 3s ease-in-out infinite alternate;
   position: relative;
   z-index: 10;
-  word-break: break-word;
-  line-height: 1.2;
   text-align: center;
   width: 100%;
-  max-width: 100%;
-  overflow-wrap: break-word;
   text-transform: uppercase;
   font-family: 'Arial Black', Arial, sans-serif;
 }
@@ -227,50 +228,31 @@ html, body {
   margin-right: auto;
 }
 
-.designation-item {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  color: #ffffff;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+/* Title and subtitle styling */
+.title-subtitle {
+  text-align: center;
+  margin: 1rem 0 2.5rem 0;
   opacity: 0;
-  transform: translateY(30px);
-  animation: slideInDesignation 0.8s ease-out forwards;
-  position: relative;
-  word-break: break-word;
-  line-height: 1.3;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(78, 205, 196, 0.1));
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 212, 255, 0.4);
-  margin: 0.3rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
 }
 
-.designation-item i {
+.main-title {
+  font-size: clamp(1.1rem, 2.8vw, 1.6rem);
   color: #00d4ff;
-  font-size: 0.9em;
-  animation: pulse 2s infinite;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-.designation-item:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(78, 205, 196, 0.2));
-  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-  border-color: rgba(0, 212, 255, 0.6);
+.subtitle {
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: #cbd5e1;
+  font-weight: 400;
+  opacity: 0.9;
+  letter-spacing: 1px;
 }
-
-.designation-item:nth-child(1) { animation-delay: 0.5s; }
-.designation-item:nth-child(2) { animation-delay: 1s; }
-.designation-item:nth-child(3) { animation-delay: 1.5s; }
-.designation-item:nth-child(4) { animation-delay: 2s; }
-.designation-item:nth-child(5) { animation-delay: 2.5s; }
 
 @keyframes slideInDesignation {
   to {
@@ -285,25 +267,7 @@ html, body {
 }
 
 /* Portfolio Text */
-.portfolio-text {
-  margin-bottom: 2.5rem;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: clamp(0.1em, 1.5vw, 0.2em);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(3px, 1.2vw, 10px);
-  font-family: 'Arial Black', Arial, sans-serif;
-}
-
-@media (max-width: 480px) {
-  .portfolio-text {
-    font-size: clamp(1rem, 5vw, 1.6rem);
-    letter-spacing: clamp(0.05em, 1vw, 0.1em);
-    gap: clamp(2px, 0.8vw, 6px);
-  }
-}
+/* Portfolio text styles removed - no longer needed */
 
 .portfolio-word {
   display: inline-block;
@@ -346,16 +310,13 @@ html, body {
 }
 
 .click-text {
-  font-size: clamp(0.9rem, 2.2vw, 1.2rem);
-  color: #ffffff;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1.5rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: #cbd5e1;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
   animation: textPulse 2s ease-in-out infinite;
-  word-break: break-word;
-  line-height: 1.3;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  opacity: 0.9;
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(78, 205, 196, 0.15));
   border-radius: 25px;
   padding: 1rem 2rem;
