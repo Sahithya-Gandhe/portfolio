@@ -33,8 +33,8 @@
                     <li><a href="#hero" class="nav-link">Home</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#education" class="nav-link">Education</a></li>
-                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
                     <li><a href="#footer" class="nav-link">Contact</a></li>
                 </ul>
             </div>
@@ -50,16 +50,37 @@
                 </div>
                 <div class="hero-text">
                     <h1>Hello, I'm Sahithya</h1>
-                    <p>A passionate AI Enthusiast and Full Stack Developer with a keen interest in building innovative
-                        solutions. Currently pursuing B.Tech in Computer Science Engineering, I combine technical
-                        expertise with creative problem-solving to deliver impactful results.</p>
-                    <p>As an undergrad studying in Computer Science and Engineering, I have a strong passion for
-                        programming and web development. Skilled in Java , Python ,HTML, CSS, JavaScript,Reactjs
-                        ,Expressjs and backend technologies, Currently Exploring Artificial Intelligence and Machine
-                        Learning.
-                        I love building user-friendly and efficient applications , I'm looking for internship
-                        opportunities to apply my skills , gain hands-on experience, and contribute to real-world
-                        projects. Eager to learn, grow, and collaborate with like-minded professionals!</p>
+                    <p class="hero-intro">Passionate about creating innovative digital solutions that make a difference</p>
+                    
+                    <div class="role-tags">
+                        <div class="role-tag primary">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Full-Stack Developer</span>
+                        </div>
+                        <div class="role-tag secondary">
+                            <i class="fas fa-server"></i>
+                            <span>Backend Engineer</span>
+                        </div>
+                        <div class="role-tag accent">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Enthusiast</span>
+                        </div>
+                        <div class="role-tag warning">
+                            <i class="fas fa-code"></i>
+                            <span>Problem Solver</span>
+                        </div>
+                        <div class="role-tag info">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud Developer</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#" class="download-cv-btn" id="downloadCV">
+                            <i class="fas fa-download"></i>
+                            <span>Download Resume</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -149,47 +170,185 @@
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">HTML</span>
                     <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">MERN Stack</span>
+                    <span class="tech-tag">AI Integration</span>
                 </div>
                 <ul class="experience-details">
                     <li>Contributed to Captain Panel and Loomy App development.</li>
-                    <li>Built responsive dashboards with order management, KPI tracking, and authentication features.
-                    </li>
-                    <li>Worked with React, Express.js, Tailwind CSS, AWS, and Framer Motion to deliver production-ready
-                        solutions.</li>
+                    <li>Built responsive dashboards with order management, KPI tracking, and authentication features.</li>
+                    <li>Worked with React, Express.js, Tailwind CSS, AWS, and Framer Motion to deliver production-ready solutions.</li>
+                </ul>
+
+                <!-- Project 1: Nutrimony -->
+                <div class="project-under-experience nutrition-project">
+                    <div class="project-header">
+                        <div class="project-icon">🥗</div>
+                        <div class="project-title-section">
+                            <h4>Nutrimony - Personalized Nutrition SAAS</h4>
+                            <p class="project-subtitle">Full-Stack Development & System Architecture</p>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag primary">MERN Stack</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Authentication</span>
+                    </div>
+                    <div class="contribution-section">
+                        <h5>My Key Contributions:</h5>
+                        <ul class="experience-details">
+                            <li><strong>Architected and developed</strong> a comprehensive full-stack SAAS platform using the MERN stack, enabling personalized nutrition planning for thousands of users.</li>
+                            <li><strong>Implemented robust authentication</strong> and authorization systems with JWT tokens, ensuring secure user data management and privacy compliance.</li>
+                            <li><strong>Optimized backend algorithms</strong> to process complex user dietary data and generate personalized nutrition reports in under 5 seconds, improving user experience significantly.</li>
+                            <li><strong>Built responsive React components</strong> for nutrition tracking, meal planning, and progress visualization, resulting in high user engagement post-launch.</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.nutrimony.in/" target="_blank" rel="noopener noreferrer" class="project-link live">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Loomy Labs -->
+                <div class="project-under-experience education-project">
+                    <div class="project-header">
+                        <div class="project-icon">🎓</div>
+                        <div class="project-title-section">
+                            <h4>Loomy Labs - AI-Powered Education Platform</h4>
+                            <p class="project-subtitle">AI Integration & Frontend Development</p>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag primary">React.js</span>
+                        <span class="tech-tag ai">AI/ML</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag ai">Generative AI</span>
+                        <span class="tech-tag">Education Tech</span>
+                        <span class="tech-tag">API Integration</span>
+                    </div>
+                    <div class="contribution-section">
+                        <h5>My Key Contributions:</h5>
+                        <ul class="experience-details">
+                            <li><strong>Designed and implemented</strong> the frontend architecture using React.js, creating intuitive interfaces for personalized learning experiences that boosted user engagement by 20%.</li>
+                            <li><strong>Integrated advanced Generative AI models</strong> to dynamically create customized learning modules, adapting content based on individual student progress and learning patterns.</li>
+                            <li><strong>Developed scalable backend services</strong> using Node.js to handle real-time data processing for over 2,500 active students simultaneously.</li>
+                            <li><strong>Collaborated on AI model training</strong> and fine-tuning to improve content generation accuracy, resulting in more relevant and engaging educational materials.</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://loomylabs.tech/" target="_blank" rel="noopener noreferrer" class="project-link live">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PathCreators Internship -->
+            <div class="experience-card">
+                <h3>Web Development Intern | PathCreators</h3>
+                <p class="experience-period">May–Aug 2024</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive Design</span>
+                    <span class="tech-tag">Cross-browser Compatibility</span>
+                    <span class="tech-tag">Mobile-first Design</span>
+                </div>
+                <ul class="experience-details">
+                    <li><strong>Developed and styled responsive user interfaces</strong> for client websites using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and mobile-first design.</li>
+                    <li><strong>Assisted in debugging and resolving front-end issues</strong>, helping to reduce the number of open support tickets by 15% during the internship period.</li>
                 </ul>
             </div>
 
-            <div class="technical-skills">
-                <h3>Technical Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Programming Languages</h4>
-                        <div class="skills-list">
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Python (Basics)</span>
-                            <span class="skill-tag">JavaScript</span>
-                        </div>
+
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-code category-icon"></i>
+                        <h3>Languages</h3>
                     </div>
-                    <div class="skill-category">
-                        <h4>Web Development</h4>
-                        <div class="skills-list">
-                            <span class="skill-tag">HTML</span>
-                            <span class="skill-tag">CSS</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">React JS </span>
-                            <span class="skill-tag">Express JS</span>
-                            <span class="skill-tag">DynamoDB</span>
-                            <span class='skill-tag'>SupaBase</span>
-                        </div>
+                    <div class="skills-list">
+                        <span class="skill-tag featured">Java</span>
+                        <span class="skill-tag featured">Python</span>
+                        <span class="skill-tag featured">JavaScript</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">SQL</span>
                     </div>
-                    <div class="skill-category">
-                        <h4>Developer Tools</h4>
-                        <div class="skills-list">
-                            <span class="skill-tag">VSCode</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">GitHub</span>
-                            <span class="skill-tag">Jupyter</span>
-                        </div>
+                </div>
+
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-layer-group category-icon"></i>
+                        <h3>Frameworks & Libraries</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag featured">React.js</span>
+                        <span class="skill-tag featured">Node.js</span>
+                        <span class="skill-tag featured">Express.js</span>
+                        <span class="skill-tag primary">MERN Stack</span>
+                    </div>
+                </div>
+
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-brain category-icon"></i>
+                        <h3>AI & Machine Learning</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag ai">NumPy</span>
+                        <span class="skill-tag ai">TensorFlow</span>
+                        <span class="skill-tag ai">PyTorch</span>
+                    </div>
+                </div>
+
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-database category-icon"></i>
+                        <h3>Databases & Cloud</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag database">MongoDB</span>
+                        <span class="skill-tag database">DynamoDB</span>
+                        <span class="skill-tag cloud">AWS (Lambda, S3)</span>
+                        <span class="skill-tag cloud">Firebase</span>
+                        <span class="skill-tag cloud">Supabase</span>
+                        <span class="skill-tag database">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-tools category-icon"></i>
+                        <h3>Developer Tools</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag tools">Git</span>
+                        <span class="skill-tag tools">GitHub</span>
+                        <span class="skill-tag tools">VS Code</span>
+                        <span class="skill-tag tools">Postman</span>
+                        <span class="skill-tag tools">Docker (Basics)</span>
+                    </div>
+                </div>
+
+                <div class="skills-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-lightbulb category-icon"></i>
+                        <h3>Core Competencies</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag core">Data Structures & Algorithms</span>
+                        <span class="skill-tag core">Object-Oriented Programming (OOP)</span>
+                        <span class="skill-tag core">System Design (Basics)</span>
+                        <span class="skill-tag core">Agile Methodologies</span>
                     </div>
                 </div>
             </div>
@@ -228,33 +387,6 @@
                             <span>June 2010 – March 2020</span>
                             <span class="grade">CGPA: 10.0</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Achievements Section -->
-        <section class="achievements" id="achievements">
-            <h2 class="section-title">Achievements</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-content">
-                        <h3>National Flagship Event Management</h3>
-                        <p>Successfully conducted and managed the national flagship event "Abhigyaan 3.0," overseeing
-                            coordination, logistics, and execution to ensure a seamless experience.</p>
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-content">
-                        <h3>Operational Internship</h3>
-                        <p>Operational Intern at TopTrove, a Non-profitable Organization.</p>
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-content">
-                        <h3>Web Development Internship</h3>
-                        <p>Completed a Web Development Internship at PathCreators, gaining hands-on experience in
-                            front-end technologies to build and maintain dynamic websites.</p>
                     </div>
                 </div>
             </div>

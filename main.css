@@ -462,8 +462,36 @@ html {
 }
 
 /* Smooth transitions for all interactive elements */
-a, button, .project-card, .achievement-card, .timeline-content {
+a, button, .project-card, .skills-category-card, .timeline-content, .role-tag, .download-cv-btn {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced global styling for better visual appeal */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.main-content {
+  position: relative;
+}
+
+/* Add subtle background pattern */
+.main-content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Gradient text effect for headings */
@@ -790,41 +818,71 @@ a, button, .project-card, .achievement-card, .timeline-content {
 }
 
 .hero-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 6rem;
+  min-height: 80vh;
 }
 
 .hero-image {
-  flex: 0 0 300px;
+  flex: 0 0 400px;
+  position: relative;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: linear-gradient(45deg, var(--primary-color), #8b5cf6, var(--success-color));
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
 }
 
 .hero-image img {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px var(--shadow-color);
   animation: float 6s ease-in-out infinite;
   transition: all 0.3s ease;
+  border: 3px solid var(--border-color);
 }
 
 .hero-image img:hover {
-  transform: scale(1.05) translateY(-5px);
+  transform: scale(1.03) translateY(-8px);
+  box-shadow: 0 15px 40px var(--shadow-hover);
   box-shadow: 0 8px 25px var(--shadow-hover);
 }
 
 .hero-text {
   flex: 1;
+  padding: 2rem 0;
 }
 
 .hero-text h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3.2rem;
+  margin-bottom: 1.5rem;
   color: var(--text-color);
   animation: fadeInLeft 1s ease-out 0.5s both;
+  font-weight: 700;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.02); opacity: 0.15; }
 }
 
 .hero-text p {
@@ -838,19 +896,224 @@ a, button, .project-card, .achievement-card, .timeline-content {
   opacity: 0.8;
 }
 
+.hero-intro {
+  font-size: 1.2rem !important;
+  font-weight: 400;
+  opacity: 0.8 !important;
+  margin-bottom: 2.5rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-secondary) !important;
+}
+
+.role-tags {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+/* Desktop specific layout for role tags */
+@media (min-width: 1024px) {
+  .role-tags {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+.role-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.role-tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  scale: 1.05;
+}
+
+.role-tag i {
+  font-size: 1rem;
+}
+
+.role-tag.primary {
+  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  color: white;
+}
+
+.role-tag.secondary {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+}
+
+.role-tag.accent {
+  background: linear-gradient(135deg, var(--accent-color), #e74c3c);
+  color: white;
+}
+
+.role-tag.success {
+  background: linear-gradient(135deg, var(--success-color), #17a2b8);
+  color: white;
+}
+
+.role-tag.warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14);
+  color: #212529;
+}
+
+.role-tag.info {
+  background: linear-gradient(135deg, #17a2b8, #007bff);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .role-tags {
+    gap: 0.8rem;
+    justify-content: center;
+  }
+  
+  .role-tag {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero-intro {
+    font-size: 1.1rem !important;
+    text-align: center;
+  }
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 1s ease-out 1.5s both;
+}
+
+.download-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.download-cv-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.download-cv-btn:hover::before {
+  left: 100%;
+}
+
+.download-cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  scale: 1.05;
+}
+
+.download-cv-btn:active {
+  transform: translateY(-1px);
+  scale: 1.02;
+}
+
+.download-cv-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.download-cv-btn:hover i {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .hero-actions {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .download-cv-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .download-cv-btn:hover {
+    transform: translateY(-2px);
+    scale: 1.02;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
     text-align: center;
     gap: 2rem;
+    min-height: auto;
+    padding: 2rem 0;
   }
 
   .hero-image {
-    flex: 0 0 250px;
+    flex: 0 0 280px;
+    order: -1;
+  }
+
+  .hero-image::before {
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+  }
+
+  .hero-image img {
+    height: 280px;
+    border-radius: 15px;
+  }
+
+  .hero-text {
+    padding: 1rem 0;
   }
 
   .hero-text h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    background: var(--text-color);
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+  }
+
+  .role-tags {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
 }
 
@@ -869,6 +1132,10 @@ a, button, .project-card, .achievement-card, .timeline-content {
   position: relative;
   font-weight: 700;
   animation: fadeInUp 0.8s ease-out;
+  background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-title::after {
@@ -1118,7 +1385,14 @@ a, button, .project-card, .achievement-card, .timeline-content {
 .experience-card h3 {
   color: var(--primary-color);
   font-size: 1.5em;
+  margin: 0 0 0.5rem;
+}
+
+.experience-period {
+  color: var(--text-secondary);
+  font-style: italic;
   margin: 0 0 1rem;
+  font-size: 0.95em;
 }
 
 .experience-details {
@@ -1141,6 +1415,251 @@ a, button, .project-card, .achievement-card, .timeline-content {
   position: absolute;
   left: 0;
   font-size: 1.2em;
+}
+
+/* Project under experience styles - Enhanced */
+.project-under-experience {
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.08), rgba(100, 108, 255, 0.02));
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2.5rem 0;
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(100, 108, 255, 0.1);
+}
+
+.project-under-experience::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+  border-radius: 16px 16px 0 0;
+}
+
+[data-theme="dark"] .project-under-experience {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.03));
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
+}
+
+.project-under-experience:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(100, 108, 255, 0.2);
+  border-color: rgba(100, 108, 255, 0.4);
+}
+
+[data-theme="dark"] .project-under-experience:hover {
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.25);
+}
+
+/* Project-specific color themes */
+.nutrition-project {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.08), rgba(78, 205, 196, 0.02));
+  border-color: rgba(78, 205, 196, 0.3);
+}
+
+.nutrition-project::before {
+  background: linear-gradient(90deg, #4ecdc4, #44a08d, #2ecc71);
+}
+
+.education-project {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 107, 107, 0.02));
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.education-project::before {
+  background: linear-gradient(90deg, #ff6b6b, #ee5a52, #e74c3c);
+}
+
+/* Project header with icon */
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-title-section h4 {
+  color: var(--primary-color);
+  font-size: 1.3em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.project-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  margin: 0.3rem 0 0 0;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Enhanced tech stack styling */
+.project-under-experience .tech-stack {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.project-under-experience .tech-tag {
+  font-size: 0.8em;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.tech-tag.primary {
+  background: linear-gradient(135deg, var(--primary-color), rgba(100, 108, 255, 0.8));
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.3);
+}
+
+.tech-tag.ai {
+  background: linear-gradient(135deg, #ff6b6b, rgba(255, 107, 107, 0.8));
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* Contribution section styling */
+.contribution-section {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contribution-section h5 {
+  color: var(--primary-color);
+  font-size: 1em;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contribution-section .experience-details {
+  margin: 0;
+}
+
+.contribution-section .experience-details li {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.contribution-section .experience-details li strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Enhanced project links */
+.project-under-experience .project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
+
+.project-under-experience .project-link {
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-under-experience .project-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.project-under-experience .project-link:hover::before {
+  left: 100%;
+}
+
+.project-under-experience .project-link.live {
+  background: linear-gradient(135deg, var(--primary-color), rgba(100, 108, 255, 0.8));
+  color: white;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+.project-under-experience .project-link:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(100, 108, 255, 0.4);
+}
+
+[data-theme="dark"] .project-under-experience .project-link.live {
+  background: linear-gradient(135deg, #00d4ff, rgba(0, 212, 255, 0.8));
+}
+
+[data-theme="dark"] .project-under-experience .project-link:hover {
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+}
+
+/* Responsive design for project cards */
+@media (max-width: 768px) {
+  .project-under-experience {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .project-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+  
+  .contribution-section {
+    padding: 1rem;
+  }
+  
+  .project-under-experience .project-links {
+    justify-content: center;
+  }
 }
 
 .technical-skills {
@@ -1232,6 +1751,14 @@ a, button, .project-card, .achievement-card, .timeline-content {
 
   .skill-category {
     margin-bottom: 1.5rem;
+  }
+  
+  .experience-card {
+    padding: 1.5rem;
+  }
+  
+  .experience-card h3 {
+    font-size: 1.3em;
   }
 }
 
@@ -1346,70 +1873,148 @@ a, button, .project-card, .achievement-card, .timeline-content {
   }
 }
 
-/* Achievements Styles */
-.achievements {
+/* Skills Section Styles */
+.skills {
   padding: 4rem 2rem;
   max-width: 1280px;
   margin: 0 auto;
 }
 
-.achievements-grid {
+.skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.achievement-card {
+.skills-category-card {
   background: var(--card-bg);
   border-radius: 12px;
-  overflow: hidden;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
   box-shadow: 0 4px 20px var(--shadow-color);
-  transition: all 0.4s ease;
-  position: relative;
+  transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.achievement-card:nth-child(1) { animation-delay: 0.1s; }
-.achievement-card:nth-child(2) { animation-delay: 0.3s; }
-.achievement-card:nth-child(3) { animation-delay: 0.5s; }
+.skills-category-card:nth-child(1) { animation-delay: 0.1s; }
+.skills-category-card:nth-child(2) { animation-delay: 0.2s; }
+.skills-category-card:nth-child(3) { animation-delay: 0.3s; }
+.skills-category-card:nth-child(4) { animation-delay: 0.4s; }
+.skills-category-card:nth-child(5) { animation-delay: 0.5s; }
+.skills-category-card:nth-child(6) { animation-delay: 0.6s; }
 
-.achievement-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background-color: var(--primary-color);
-}
-
-.achievement-card:hover {
+.skills-category-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px var(--shadow-hover);
 }
 
-.achievement-content {
-  padding: 2rem;
-}
-
-.achievement-card h3 {
-  color: var(--primary-color);
-  font-size: 1.3em;
-  margin: 0 0 1rem;
-}
-
-.achievement-card p {
+.category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
   color: var(--text-color);
-  line-height: 1.6;
+}
+
+.category-icon {
+  font-size: 1.5rem;
+  margin-right: 12px;
+  color: var(--primary-color);
+}
+
+.category-header h3 {
   margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background: var(--hero-bg);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.skill-tag:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--shadow-hover);
+}
+
+/* Skill tag variations for different categories */
+.skill-tag.featured {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.skill-tag.primary {
+  background: var(--success-color);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.skill-tag.ai {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+}
+
+.skill-tag.database {
+  background: var(--success-color);
+  color: #fff;
+  border: none;
+}
+
+.skill-tag.cloud {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  opacity: 0.9;
+}
+
+.skill-tag.tools {
+  background: #8b5cf6;
+  color: #fff;
+  border: none;
+}
+
+.skill-tag.core {
+  background: #f59e0b;
+  color: #fff;
+  border: none;
 }
 
 @media (max-width: 768px) {
-  .achievements-grid {
+  .skills-container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skills-category-card {
+    padding: 1.5rem;
+  }
+  
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
 

@@ -602,21 +602,40 @@ function initMainPortfolio() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if user has visited before (optional - you can remove this if you want front page every time)
-    const hasVisited = localStorage.getItem('portfolioVisited');
+    // Check if we're on the front page or portfolio page
+    const frontPageOverlay = document.getElementById('frontPageOverlay');
     
-    if (!hasVisited) {
-        // First time visitor - show front page
-        initFrontPage();
-        localStorage.setItem('portfolioVisited', 'true');
+    if (frontPageOverlay) {
+        // We're on the front page (index.html)
+        const hasVisited = localStorage.getItem('portfolioVisited');
+        
+        if (!hasVisited) {
+            // First time visitor - show front page
+            initFrontPage();
+            localStorage.setItem('portfolioVisited', 'true');
+        } else {
+            // Returning visitor - go straight to portfolio (optional)
+            frontPageOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            initMainPortfolio();
+        }
     } else {
-        // Returning visitor - go straight to portfolio (optional)
-        const frontPageOverlay = document.getElementById('frontPageOverlay');
-        frontPageOverlay.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        // We're on the portfolio page (portfolio.html) - just initialize portfolio
         initMainPortfolio();
     }
     
     // If you want to always show front page, replace above with just:
     // initFrontPage();
+    
+    // Download CV functionality
+    const downloadCVBtn = document.getElementById('downloadCV');
+    if (downloadCVBtn) {
+        downloadCVBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Open Google Drive resume link in new tab
+            const resumeUrl = 'https://drive.google.com/file/d/1VLc1aUMnGf2lCfO1UHto_Py3E5f8MWQj/view';
+            window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+        });
+    }
 });
