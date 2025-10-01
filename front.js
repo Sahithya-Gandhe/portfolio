@@ -1,160 +1,117 @@
-// Front Page JavaScript - Click anywhere to enter portfolio
+// Optimized Front Page JavaScript - Fast Loading
 
 document.addEventListener('DOMContentLoaded', function() {
     const frontPageOverlay = document.getElementById('frontPageOverlay');
-    const particlesContainer = document.querySelector('.particles-container');
+    const mainQuote = document.getElementById('mainQuote');
+    const secondaryText = document.getElementById('secondaryText');
+    const portfolioButton = document.querySelector('.portfolio-button');
+    const buttonContainer = document.querySelector('.button-container');
     
-    // Create floating particles
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        particlesContainer.appendChild(particle);
+    // Simple fade-in animation for text elements
+    function animateElements() {
+        mainQuote.style.opacity = '1';
+        mainQuote.style.transform = 'translateY(0)';
         
-        // Remove particle after animation
         setTimeout(() => {
-            if (particlesContainer.contains(particle)) {
-                particlesContainer.removeChild(particle);
+            secondaryText.style.opacity = '1';
+            secondaryText.style.transform = 'translateY(0)';
+        }, 200);
+        
+        setTimeout(() => {
+            if (buttonContainer) {
+                buttonContainer.style.opacity = '1';
+                buttonContainer.style.transform = 'translateY(0)';
             }
-        }, 8000);
+        }, 400);
     }
     
-    // Create particles periodically
-    const particleInterval = setInterval(createParticle, 300);
-    
-    // Handle click anywhere to redirect
-    function handleClick(event) {
-        // Prevent event bubbling
+    // Handle button click
+    function handleButtonClick(event) {
         event.preventDefault();
-        event.stopPropagation();
         
-        // Add exit animation
-        frontPageOverlay.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        // Quick fade transition
+        frontPageOverlay.style.transition = 'opacity 0.3s ease';
         frontPageOverlay.style.opacity = '0';
-        frontPageOverlay.style.transform = 'scale(1.1)';
         
-        // Clear particle interval
-        clearInterval(particleInterval);
-        
-        // Redirect to main portfolio after animation
+        // Navigate to portfolio page
         setTimeout(() => {
             window.location.href = 'portfolio.html';
-        }, 800);
+        }, 300);
     }
     
-    // Add click event listeners
-    frontPageOverlay.addEventListener('click', handleClick);
-    frontPageOverlay.addEventListener('touchstart', handleClick, { passive: false });
+    // Handle overlay click for portfolio navigation
+    function handleOverlayClick(event) {
+        if (!event.target.closest('.portfolio-button')) {
+            frontPageOverlay.style.transition = 'opacity 0.3s ease';
+            frontPageOverlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                window.location.href = 'portfolio.html';
+            }, 300);
+        }
+    }
     
-    // Handle keyboard navigation (Enter or Space)
-    document.addEventListener('keydown', function(event) {
+    // Keyboard navigation
+    function handleKeyPress(event) {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            handleClick(event);
+            handleOverlayClick(event);
         }
-        
-        // ESC key to prevent accidental exits
-        if (event.key === 'Escape') {
-            event.preventDefault();
-        }
-    });
-    
-    // Prevent context menu
-    frontPageOverlay.addEventListener('contextmenu', function(event) {
-        event.preventDefault();
-    });
-    
-    // Add loading animation for slow connections
-    window.addEventListener('load', function() {
-        document.body.style.opacity = '1';
-    });
-    
-    // Initial particle burst
-    for (let i = 0; i < 10; i++) {
-        setTimeout(createParticle, i * 100);
     }
     
-    // Add ripple effect on click
-    function createRipple(event) {
-        const ripple = document.createElement('div');
-        const rect = frontPageOverlay.getBoundingClientRect();
-        const size = 60;
-        const x = event.clientX - rect.left - size / 2;
-        const y = event.clientY - rect.top - size / 2;
+    // Create flowing dots effect
+    function createFlowingDots() {
+        const particlesContainer = document.querySelector('.particles-container');
+        if (!particlesContainer) return;
         
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random speed class
+            const speeds = ['slow', 'medium', 'fast'];
+            particle.classList.add(speeds[Math.floor(Math.random() * speeds.length)]);
+            
+            // Random horizontal position
+            particle.style.left = Math.random() * 100 + '%';
+            
+            // Random horizontal drift
+            particle.style.setProperty('--random-x', (Math.random() - 0.5) * 200 + 'px');
+            
+            particlesContainer.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 15000);
+        }
         
-        // Create ripple styles
-        ripple.style.position = 'absolute';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(0, 212, 255, 0.6)';
-        ripple.style.transform = 'scale(0)';
-        ripple.style.animation = 'ripple-animation 0.6s linear';
-        ripple.style.pointerEvents = 'none';
+        // Create particles at intervals
+        setInterval(createParticle, 800);
         
-        frontPageOverlay.appendChild(ripple);
-        
-        setTimeout(() => {
-            if (frontPageOverlay.contains(ripple)) {
-                frontPageOverlay.removeChild(ripple);
-            }
-        }, 600);
+        // Create initial particles
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createParticle, i * 200);
+        }
     }
     
-    // Add ripple on click
-    frontPageOverlay.addEventListener('mousedown', createRipple);
-    frontPageOverlay.addEventListener('touchstart', function(event) {
-        if (event.touches.length === 1) {
-            const touch = event.touches[0];
-            createRipple({
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-        }
-    });
+    // Initialize immediately for fast loading
+    animateElements();
+    createFlowingDots();
     
-    // Performance optimization: Pause animations when tab is not visible
-    document.addEventListener('visibilitychange', function() {
-        const animations = document.querySelectorAll('*');
-        if (document.hidden) {
-            animations.forEach(el => {
-                el.style.animationPlayState = 'paused';
-            });
-        } else {
-            animations.forEach(el => {
-                el.style.animationPlayState = 'running';
-            });
-        }
-    });
+    // Add event listeners
+    if (portfolioButton) {
+        portfolioButton.addEventListener('click', handleButtonClick);
+    }
+    frontPageOverlay.addEventListener('click', handleOverlayClick);
+    document.addEventListener('keydown', handleKeyPress);
+    
+    // Accessibility
+    frontPageOverlay.setAttribute('tabindex', '0');
+    frontPageOverlay.setAttribute('aria-label', 'Enter portfolio');
+    if (portfolioButton) {
+        portfolioButton.setAttribute('aria-label', 'Navigate to portfolio page');
+    }
 });
-
-// Add CSS for ripple animation dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-    
-    body {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(0, 212, 255, 0.6);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-`;
-document.head.appendChild(style);

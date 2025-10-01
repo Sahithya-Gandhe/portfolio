@@ -21,23 +21,23 @@
                 <p class="subtitle">AI Enthusiast | Full Stack Developer</p>
             </div>
             <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#hero" class="nav-link">Home</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#education" class="nav-link">Education</a></li>
-                    <li><a href="#footer" class="nav-link">Contact</a></li>
-                </ul>
             </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#footer" class="nav-link">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -49,10 +49,36 @@
                     <img src="sahi.jfif" alt="Sahithya Gande">
                 </div>
                 <div class="hero-text">
-                    <h1>Hello, I'm Sahithya</h1>
-                    <p class="hero-intro">Passionate about creating innovative digital solutions that make a difference</p>
-                    
-                    <div class="role-tags">
+                    <div class="hud-frame">
+                        <div class="hud-corners">
+                            <div class="corner top-left"></div>
+                            <div class="corner top-right"></div>
+                            <div class="corner bottom-left"></div>
+                            <div class="corner bottom-right"></div>
+                        </div>
+                        <h1 class="hero-name">Hello, I'm Sahithya</h1>
+                        <div class="hero-niche">
+                            <div class="niche-primary">Full Stack Developer</div>
+                            <div class="niche-secondary">AI Enthusiast | Backend Engineer | Problem Solver</div>
+                        </div>
+                        <p class="hero-intro">Passionate about creating innovative digital solutions that make a
+                            difference</p>
+
+                        <!-- Hero Actions -->
+                        <div class="hero-actions">
+                            <a href="https://drive.google.com/file/d/1VLc1aUMnGf2lCfO1UHto_Py3E5f8MWQj/view"
+                                class="download-cv-btn" id="downloadCV">
+                                <i class="fas fa-download"></i>
+                                <span>Download Resume</span>
+                            </a>
+                            <a href="#projects" class="view-work-btn">
+                                <i class="fas fa-eye"></i>
+                                <span>View My Work</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="role-tags">
                         <div class="role-tag primary">
                             <i class="fas fa-layer-group"></i>
                             <span>Full-Stack Developer</span>
@@ -73,14 +99,14 @@
                             <i class="fas fa-cloud"></i>
                             <span>Cloud Developer</span>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="hero-actions">
+                    <!-- <div class="hero-actions">
                         <a href="#" class="download-cv-btn" id="downloadCV">
                             <i class="fas fa-download"></i>
                             <span>Download Resume</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -164,104 +190,152 @@
         <section class="experience" id="experience">
             <h2 class="section-title">Experience</h2>
             <div class="experience-card">
-                <h3>Nexxify Inc.</h3>
-                <div class="tech-stack">
-                    <span class="tech-tag">React JS</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS</span>
-                    <span class="tech-tag">MERN Stack</span>
-                    <span class="tech-tag">AI Integration</span>
+                <div class="experience-header"></div>
+                <div class="company-info"></div>
+                <h3 class="company-name">Nexxify Inc.</h3>
+                <div class="role-info">
+                    <span class="role-title">Full-Stack Developer</span>
+                    <span class="duration">2023 - Present</span>
                 </div>
-                <ul class="experience-details">
-                    <li>Contributed to Captain Panel and Loomy App development.</li>
-                    <li>Built responsive dashboards with order management, KPI tracking, and authentication features.</li>
-                    <li>Worked with React, Express.js, Tailwind CSS, AWS, and Framer Motion to deliver production-ready solutions.</li>
+            </div>
+            <div class="company-logo">
+                <i class="fas fa-building"></i>
+            </div>
+            </div>
+
+            <div class="experience-description">
+                <p>As a dedicated full-stack developer, I engineer and deliver production-ready solutions for complex
+                    web applications. I specialize in building responsive, data-driven dashboards with robust features
+                    including secure authentication, real-time KPI tracking, and end-to-end order management. My work
+                    leverages a modern tech stack—React, Express.js, AWS—and a keen eye for design, using Tailwind CSS
+                    and Framer Motion to create intuitive and fluid user experiences.</p>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">React JS</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag">AWS</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">Framer Motion</span>
+                <span class="tech-tag">JavaScript</span>
+            </div>
+
+            <!-- <div class="key-achievements">
+                <h4>Key Achievements</h4>
+                <ul class="achievement-list">
+                    <li>
+                        <i class="fas fa-rocket"></i>
+                        <span>Contributed to Captain Panel and Loomy App development, delivering scalable
+                            solutions</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-chart-line"></i>
+                        <span>Built responsive dashboards with order management, KPI tracking, and authentication
+                            features</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-cogs"></i>
+                        <span>Delivered production-ready solutions using modern tech stack and design principles</span>
+                    </li>
                 </ul>
+            </div>ul></li></i> -->
 
-                <!-- Project 1: Nutrimony -->
-                <div class="project-under-experience nutrition-project">
-                    <div class="project-header">
-                        <div class="project-icon">🥗</div>
-                        <div class="project-title-section">
-                            <h4>Nutrimony - Personalized Nutrition SAAS</h4>
-                            <p class="project-subtitle">Full-Stack Development & System Architecture</p>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag primary">MERN Stack</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Express.js</span>
-                        <span class="tech-tag">React.js</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Authentication</span>
-                    </div>
-                    <div class="contribution-section">
-                        <h5>My Key Contributions:</h5>
-                        <ul class="experience-details">
-                            <li><strong>Architected and developed</strong> a comprehensive full-stack SAAS platform using the MERN stack, enabling personalized nutrition planning for thousands of users.</li>
-                            <li><strong>Implemented robust authentication</strong> and authorization systems with JWT tokens, ensuring secure user data management and privacy compliance.</li>
-                            <li><strong>Optimized backend algorithms</strong> to process complex user dietary data and generate personalized nutrition reports in under 5 seconds, improving user experience significantly.</li>
-                            <li><strong>Built responsive React components</strong> for nutrition tracking, meal planning, and progress visualization, resulting in high user engagement post-launch.</li>
-                        </ul>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.nutrimony.in/" target="_blank" rel="noopener noreferrer" class="project-link live">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
+            <!-- Project 1: Nutrimony -->
+            <div class="project-under-experience nutrition-project">
+                <div class="project-header">
+                    <div class="project-icon">🥗</div>
+                    <div class="project-title-section">
+                        <h4>Nutrimony - Personalized Nutrition SAAS</h4>
+                        <p class="project-subtitle">Full-Stack Development & System Architecture</p>
                     </div>
                 </div>
+                <div class="tech-stack">
+                    <span class="tech-tag primary">MERN Stack</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Authentication</span>
+                </div>
+                <div class="project-highlights">
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-rocket"></i> Built full-stack SAAS platform for personalized nutrition planning</li>
+                        <li><i class="fas fa-shield-alt"></i> Implemented secure authentication with JWT tokens</li>
+                        <li><i class="fas fa-tachometer-alt"></i> Optimized algorithms for 5-second report generation</li>
+                        <li><i class="fas fa-mobile-alt"></i> Created responsive React components for meal tracking</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="https://www.nutrimony.in/" target="_blank" rel="noopener noreferrer"
+                        class="project-link live">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+            </div>
 
-                <!-- Project 2: Loomy Labs -->
-                <div class="project-under-experience education-project">
-                    <div class="project-header">
-                        <div class="project-icon">🎓</div>
-                        <div class="project-title-section">
-                            <h4>Loomy Labs - AI-Powered Education Platform</h4>
-                            <p class="project-subtitle">AI Integration & Frontend Development</p>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag primary">React.js</span>
-                        <span class="tech-tag ai">AI/ML</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag ai">Generative AI</span>
-                        <span class="tech-tag">Education Tech</span>
-                        <span class="tech-tag">API Integration</span>
-                    </div>
-                    <div class="contribution-section">
-                        <h5>My Key Contributions:</h5>
-                        <ul class="experience-details">
-                            <li><strong>Designed and implemented</strong> the frontend architecture using React.js, creating intuitive interfaces for personalized learning experiences that boosted user engagement by 20%.</li>
-                            <li><strong>Integrated advanced Generative AI models</strong> to dynamically create customized learning modules, adapting content based on individual student progress and learning patterns.</li>
-                            <li><strong>Developed scalable backend services</strong> using Node.js to handle real-time data processing for over 2,500 active students simultaneously.</li>
-                            <li><strong>Collaborated on AI model training</strong> and fine-tuning to improve content generation accuracy, resulting in more relevant and engaging educational materials.</li>
-                        </ul>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://loomylabs.tech/" target="_blank" rel="noopener noreferrer" class="project-link live">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
+            <!-- Project 2: Loomy Labs -->
+            <div class="project-under-experience education-project">
+                <div class="project-header">
+                    <div class="project-icon">🎓</div>
+                    <div class="project-title-section">
+                        <h4>Loomy Labs - AI-Powered Education Platform</h4>
+                        <p class="project-subtitle">AI Integration & Frontend Development</p>
                     </div>
                 </div>
+                <div class="tech-stack">
+                    <span class="tech-tag primary">React.js</span>
+                    <span class="tech-tag ai">AI/ML</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag ai">Generative AI</span>
+                    <span class="tech-tag">Education Tech</span>
+                    <span class="tech-tag">API Integration</span>
+                </div>
+                <div class="project-highlights">
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-brain"></i> Integrated Generative AI for personalized learning modules</li>
+                        <li><i class="fas fa-users"></i> Built React interfaces boosting user engagement by 20%</li>
+                        <li><i class="fas fa-server"></i> Developed Node.js services for 2,500+ concurrent users</li>
+                        <li><i class="fas fa-chart-line"></i> Improved AI content generation accuracy through model training</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="https://loomylabs.tech/" target="_blank" rel="noopener noreferrer"
+                        class="project-link live">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+            </div>
             </div>
 
             <!-- PathCreators Internship -->
             <div class="experience-card">
-                <h3>Web Development Intern | PathCreators</h3>
-                <p class="experience-period">May–Aug 2024</p>
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3 class="company-name">PathCreators</h3>
+                        <div class="role-info">
+                            <span class="role-title">Web Development Intern</span>
+                            <span class="duration">May–Aug 2024</span>
+                        </div>
+                    </div>
+                    <div class="company-logo">
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+                
                 <div class="tech-stack">
                     <span class="tech-tag">HTML</span>
                     <span class="tech-tag">CSS</span>
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">Responsive Design</span>
-                    <span class="tech-tag">Cross-browser Compatibility</span>
-                    <span class="tech-tag">Mobile-first Design</span>
                 </div>
-                <ul class="experience-details">
-                    <li><strong>Developed and styled responsive user interfaces</strong> for client websites using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and mobile-first design.</li>
-                    <li><strong>Assisted in debugging and resolving front-end issues</strong>, helping to reduce the number of open support tickets by 15% during the internship period.</li>
-                </ul>
+                
+                <div class="project-highlights">
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-mobile-alt"></i> Built responsive interfaces with mobile-first design</li>
+                        <li><i class="fas fa-bug"></i> Reduced support tickets by 15% through debugging</li>
+                        <li><i class="fas fa-globe"></i> Ensured cross-browser compatibility across platforms</li>
+                    </ul>
+                </div>
             </div>
 
 
