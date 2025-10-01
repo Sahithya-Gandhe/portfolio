@@ -7,22 +7,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioButton = document.querySelector('.portfolio-button');
     const buttonContainer = document.querySelector('.button-container');
     
-    // Simple fade-in animation for text elements
+    // Writing effect animation for text elements
     function animateElements() {
+        // Show main quote container first
         mainQuote.style.opacity = '1';
         mainQuote.style.transform = 'translateY(0)';
         
+        // Show cursor after words finish appearing
         setTimeout(() => {
+            const cursor = mainQuote.querySelector('::after');
+            if (mainQuote) {
+                mainQuote.style.setProperty('--show-cursor', '1');
+            }
+        }, 1200);
+        
+        // Hide cursor and show secondary text
+        setTimeout(() => {
+            if (mainQuote) {
+                mainQuote.style.setProperty('--show-cursor', '0');
+            }
             secondaryText.style.opacity = '1';
             secondaryText.style.transform = 'translateY(0)';
-        }, 200);
+        }, 1800);
         
+        // Show button
         setTimeout(() => {
             if (buttonContainer) {
                 buttonContainer.style.opacity = '1';
                 buttonContainer.style.transform = 'translateY(0)';
             }
-        }, 400);
+        }, 2200);
     }
     
     // Handle button click
